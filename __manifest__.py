@@ -10,10 +10,8 @@
                 ],
     'data':
         [
-            # 'security/security.xml',
             'security/ir.model.access.csv',
             'data/sequence.xml',
-            # 'data/data.xml',
         'views/base_menu.xml',
         'views/appointment_view.xml',
         'views/department_view.xml',
