@@ -1,0 +1,55 @@
+<odoo>
+    <record id="invoice_view_tree" model="ir.ui.view">
+        <field name="name">invoice tree</field>
+        <field name="model">clinic.invoice</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient_id"/>
+                <field name="treatment_ids"/>
+                <field name="status"/>
+                <field name="total_amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="invoice_view_form" model="ir.ui.view">
+        <field name="name">invoice form</field>
+        <field name="model">clinic.invoice</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <header>
+                        <field name="status" widget="statusbar" statusbar_visible="draft,paid,cancel"/>
+                        <button name="action_paid" type="object" class="btn-success"  string="Paid"  invisible="status !='draft'"/>
+                        <button name="action_cancel" type="object" class="btn-danger" string="Cancel" invisible="status in('paid','cancel')"/>
+                    </header>
+                    <div class="oe_tittle">
+                        <label for="ref"/>
+                        <h1>
+                            <field name="ref"/>
+                        </h1>
+                        <label for="patient_id"/>
+                        <h2>
+                            <field name="patient_id"/>
+                        </h2>
+                    </div>
+                    <group string="Info of Invoice">
+                        <field name="treatment_ids"/>
+                        <field name="status" invisible="1"/>
+                        <field name="total_amount"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="invoice_action" model="ir.actions.act_window">
+        <field name="name">Invoice</field>
+        <field name="res_model">clinic.invoice</field>
+    </record>
+    <menuitem
+        id="invoice_menu_item"
+        name="invoices"
+        parent="clinics_menu"
+        action="invoice_action"
+    />
+</odoo>

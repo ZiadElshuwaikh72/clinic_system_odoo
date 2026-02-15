@@ -1,0 +1,59 @@
+<odoo>
+    <record id="appointment_view_tree" model="ir.ui.view">
+        <field name="name">appointment tree</field>
+        <field name="model">clinic.appointment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="doctor_id"/>
+                <field name="patient_id"/>
+                <field name="date_time"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="appointment_view_form" model="ir.ui.view">
+        <field name="name">appointment form</field>
+        <field name="model">clinic.appointment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <header>
+                        <field name="status" widget="statusbar" statusbar_visible="new,confirmed,done,cancelled"/>
+                        <button name="action_confirmed" type="object" class="btn-success" string="Confirm" invisible="status !='new'"/>
+                        <button name="action_done" type="object" class="btn-warning" string="Done" invisible="status !='confirmed'"/>
+                        <button name="action_cancelled" type="object" class="btn-danger" string="Cancel" invisible="status in('done','cancelled')"/>
+                    </header>
+                    <div class="oe_tittle">
+                        <label for="ref"/>
+                        <h1>
+                            <field name="ref"/>
+                        </h1>
+                    </div>
+                    <group string="Appointment between patient and doctor">
+                        <group>
+                              <field name="doctor_id"/>
+                              <field name="patient_id"/>
+                        </group>
+                        <group>
+                            <field name="date_time"/>
+                            <field name="status" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="appointment_action" model="ir.actions.act_window">
+        <field name="name">Appointment</field>
+        <field name="res_model">clinic.appointment</field>
+    </record>
+
+    <menuitem
+        id="appointment_menu_item"
+        name="appointments"
+        parent="clinics_menu"
+        action="appointment_action"
+    />
+</odoo>

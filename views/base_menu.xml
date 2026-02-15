@@ -1,0 +1,13 @@
+<odoo>
+    <menuitem
+        id="clinic_pro_root_menu"
+        name="Clinics System"
+        web_icon="clinic_pro,static\Images\icon.png"
+    />
+    <menuitem
+        id="clinics_menu"
+        name="Clinics"
+        parent="clinic_pro_root_menu"
+    />
+
+</odoo>

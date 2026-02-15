@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <record id="patient_sequence" model="ir.sequence">
+            <field name="name">patient seq.</field>
+            <field name="code">patient_seq</field>
+            <field name="prefix">PATIENT</field>
+            <field name="padding">4</field>
+        </record>
+
+        <record id="doctor_sequence" model="ir.sequence">
+            <field name="name">doctor seq.</field>
+            <field name="code">doctor_seq</field>
+            <field name="prefix">Doc</field>
+            <field name="padding">5</field>
+        </record>
+
+        <record id="department_sequence" model="ir.sequence">
+            <field name="name">dept seq.</field>
+            <field name="code">dept_seq</field>
+            <field name="prefix">Dept</field>
+            <field name="padding">5</field>
+        </record>
+
+        <record id="invoice_sequence" model="ir.sequence">
+            <field name="name">invoice seq.</field>
+            <field name="code">invoice_seq</field>
+            <field name="prefix">Invoice</field>
+            <field name="padding">5</field>
+        </record>
+
+        <record id="appointment_sequence" model="ir.sequence">
+            <field name="name">appointment seq.</field>
+            <field name="code">appoint_seq</field>
+            <field name="prefix">Appoint</field>
+            <field name="padding">5</field>
+        </record>
+
+        <record id="treatment_sequence" model="ir.sequence">
+            <field name="name">treatment seq.</field>
+            <field name="code">treat_seq</field>
+            <field name="prefix">Treat</field>
+            <field name="padding">5</field>
+        </record>
+
+    </data>
+</odoo>

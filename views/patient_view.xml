@@ -1,0 +1,99 @@
+<odoo>
+    <record id="patient_view_tree" model="ir.ui.view">
+        <field name="name">patient tree</field>
+        <field name="model">clinic.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="birth_date"/>
+                <field name="gender"/>
+                <field name="phone"/>
+                <field name="address"/>
+                <field name="doctor_id"/>
+            </tree>
+        </field>
+    </record>
+
+        <record id="patient_view_form" model="ir.ui.view">
+            <field name="name">patient form</field>
+            <field name="model">clinic.patient</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <button name="action_view_appointments"  type="object" class="btn btn-primary m-3" icon="fa-calendar">
+                            <field name="appointment_count" widget="statinfo"/>
+                        </button>
+
+                         <button name="action_view_treatments"  type="object" class="btn btn-primary" string="Treatments" />
+
+                        <div class="oe_tittle">
+                            <label for="ref"/>
+                            <h1>
+                                <field name="ref"/>
+                            </h1>
+                            <label for="name"/>
+                             <h3>
+                                 <field name="name"/>
+                             </h3>
+                        </div>
+                        <group>
+                            <group string="Patient Info">
+                                    <field name="birth_date"/>
+                                    <field name="gender"/>
+                                    <field name="phone"/>
+                                    <field name="address"/>
+                                    <field name="doctor_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Treatments">
+                                <field name="treatment_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="description"/>
+                                        <field name="cost"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Appointments">
+                                <field name="appointment_ids">
+                                    <tree>
+                                        <field name="date_time"/>
+                                        <field name="status"/>
+                                        <field name="doctor_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Invoices">
+                                <field name="invoice_ids">
+                                    <tree>
+                                        <field name="status"/>
+                                        <field name="treatment_ids"/>
+                                        <field name="total_amount"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                        <!--Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+    <record id="patient_action" model="ir.actions.act_window">
+        <field name="name">Patient</field>
+        <field name="res_model">clinic.patient</field>
+    </record>
+
+    <menuitem
+        id="patient_menu_item"
+        name="patients"
+        parent="clinics_menu"
+        action="patient_action"
+    />
+</odoo>

@@ -1,0 +1,56 @@
+<odoo>
+    <record id="department_view_tree" model="ir.ui.view">
+        <field name="name">department tree</field>
+        <field name="model">clinic.department</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="department_view_form" model="ir.ui.view">
+        <field name="name">department form</field>
+        <field name="model">clinic.department</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_tittle">
+                        <label for="ref"/>
+                        <h1>
+                            <field name="ref"/>
+                        </h1>
+                        <label for="name"/>
+                        <h2>
+                            <field name="name"/>
+                        </h2>
+                    </div>
+                       <notebook>
+                            <page string="Doctors">
+                                <field name="doctor_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="specialization"/>
+                                        <field name="phone"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="department_action" model="ir.actions.act_window">
+        <field name="name">Department</field>
+        <field name="res_model">clinic.department</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="department_menu_item"
+        name="departments"
+        parent="clinics_menu"
+        action="department_action"
+    />
+</odoo>

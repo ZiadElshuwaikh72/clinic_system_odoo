@@ -1,0 +1,65 @@
+<odoo>
+    <record id="invoice_report" model="ir.actions.report">
+        <field name="name">Invoice Report</field>
+        <field name="model">clinic.invoice</field>
+        <field name="report_type">qweb-html</field>
+        <field name="binding_model_id" ref="model_clinic_invoice"/>
+        <field name="binding_type">report</field>
+        <field name="report_name">clinic_pro.invoice_report_template</field>
+    </record>
+
+   <template id="invoice_report_template">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="O">
+
+            <t t-call="web.external_layout">
+                <div class="page">
+
+                    <h2 style="text-align:center;">Clinic Invoice</h2>
+
+                    <p>
+                        <strong>Invoice Number:</strong>
+                        <t t-esc="O.ref or ''"/>
+                    </p>
+
+                    <p>
+                        <strong>Patient:</strong>
+                        <t t-esc="O.patient_id.name if O.patient_id else ''"/>
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        <t t-esc="O.status or ''"/>
+                    </p>
+
+                    <hr/>
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Treatment</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="O.treatment_ids" t-as="t">
+                                <tr>
+                                    <td><t t-esc="t.name or ''"/></td>
+                                    <td><t t-esc="t.cost or 0.0"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <h4 style="text-align:right;">
+                        Total:
+                        <t t-esc="O.total_amount or 0.0"/>
+                    </h4>
+
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+
+</odoo>

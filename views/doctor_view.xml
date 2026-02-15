@@ -1,0 +1,79 @@
+<odoo>
+    <record id="doctor_view_tree" model="ir.ui.view">
+        <field name="name">doctor tree</field>
+        <field name="model">clinic.doctor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="specialization"/>
+                <field name="phone"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="doctor_view_form" model="ir.ui.view">
+        <field name="name">doctor form</field>
+        <field name="model">clinic.doctor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_tittle">
+                        <label for="ref"/>
+                        <h1>
+                            <field name="ref"/>
+                        </h1>
+                        <label for="name"/>
+                        <h2>
+                            <field name="name"/>
+                        </h2>
+                    </div>
+                    <group string="Info of doctor">
+                        <field name="specialization"/>
+                        <field name="department_id"/>
+                        <field name="phone"/>
+                        <field name="email"/>
+                    </group>
+                    <!-- lines related of patient-->
+                    <notebook>
+                        <page string="Patients">
+                            <field name="patient_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="birth_date"/>
+                                    <field name="gender"/>
+                                    <field name="phone"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                         <page string="Appointments">
+                            <field name="appointment_ids">
+                                <tree>
+                                    <field name="patient_id"/>
+                                    <field name="date_time"/>
+                                    <field name="status"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                    </notebook>
+
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="doctor_action" model="ir.actions.act_window">
+        <field name="name">Doctor</field>
+        <field name="res_model">clinic.doctor</field>
+    </record>
+
+    <menuitem
+        id="doctor_menu_item"
+        name="doctors"
+        parent="clinics_menu"
+        action="doctor_action"
+    />
+</odoo>

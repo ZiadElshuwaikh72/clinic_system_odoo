@@ -1,0 +1,48 @@
+<odoo>
+    <record id="treatment_view_tree" model="ir.ui.view">
+        <field name="name">treatment tree</field>
+        <field name="model">clinic.treatment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="cost"/>
+            </tree>
+        </field>
+    </record>
+    <record id="treatment_view_form" model="ir.ui.view">
+        <field name="name">treatment form</field>
+        <field name="model">clinic.treatment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_tittle">
+                        <label for="ref"/>
+                        <h1>
+                            <field name="ref"/>
+                        </h1>
+                        <label for="name"/>
+                        <h2>
+                            <field name="name"/>
+                        </h2>
+                    </div>
+                    <group>
+                        <field name="description"/>
+                        <field name="cost"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="treatment_action" model="ir.actions.act_window">
+        <field name="name">Treatment</field>
+        <field name="res_model">clinic.treatment</field>
+    </record>
+
+    <menuitem
+        id="treatment_menu_item"
+        name="treatments"
+        parent="clinics_menu"
+        action="treatment_action"
+    />
+</odoo>
