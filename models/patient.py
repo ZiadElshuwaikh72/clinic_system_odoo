@@ -10,7 +10,7 @@ class Patient(models.Model):
     gender=fields.Selection([
         ('male','Male'),
         ('female','Female')
-    ],required=True)
+    ])
     address=fields.Char(tracking=True)
     phone=fields.Char(tracking=True)
     active=fields.Boolean(default=True)
@@ -28,12 +28,13 @@ class Patient(models.Model):
         res = super(Patient,self).create(vals)
         if res.ref=='New':
             res.ref=self.env['ir.sequence'].next_by_code('patient_seq')
-            return res
+        return res
 
     def _compute_appointment_count(self):
         for rec in self:
             rec.appointment_count=self.env['clinic.appointment'].search_count([('patient_id','=',rec.id)])
 
+    # method related smart buttons
     def action_view_appointments(self):
         self.ensure_one()
         return {
