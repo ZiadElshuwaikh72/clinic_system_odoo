@@ -1,13 +1,11 @@
-# Clinic Management System – Odoo 17
+Clinic Management System — Odoo 17
+A full-featured clinic management system built with Odoo 17, designed to handle real clinic workflows including patient scheduling, doctor availability, and invoice generation.
+Key Technical Decisions:
 
-## Overview
-Full-featured : Clinic Management System built with Odoo 17, managing Patients, Doctors, Appointments, Treatments, and Invoices with workflow, validations, smart buttons, and QWeb reports.
+Appointment workflow: New → Confirmed → Done → Cancelled with business-rule enforcement — confirmed appointments cannot be deleted
+Doctor conflict validation: prevents double-booking the same doctor at the same time using @api.constrains
+Date validation: blocks scheduling appointments in the past
+Auto-generated reference codes using ir.sequence
+Full QWeb reports, Chatter integration, and Smart Buttons
 
----
-
-## Features
-- Patient & Doctor management  
-- Appointment scheduling with validations  
-- Treatment tracking & Invoice generation  
-- Smart buttons and Chatter integration  
-
+Tech: Python, XML, PostgreSQL, Odoo 17
